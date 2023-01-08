@@ -1,4 +1,5 @@
 node_modules/
+gitignorefile/
 .expo/
 dist/
 npm-debug.*
