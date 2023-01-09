@@ -30,9 +30,9 @@ function HomeStack() {
 function MyTabs() {
   return (
     <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
       <Tab.Screen name="Profile" component={HUserProfile} />
       <Tab.Screen name="Notification" component={HNotificationProfile} />
-      <Tab.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
       <Tab.Screen name="Group" component={HGroupProfile} />
       <Tab.Screen name="Friend" component={HFriendProfile} />
     </Tab.Navigator>
