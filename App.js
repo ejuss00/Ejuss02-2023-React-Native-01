@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';// make sure this stays at very top
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Ionic from 'react-native-vector-icons/Ionicons';
 // import Tabs from './navigation/tabs';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -29,7 +29,25 @@ function HomeStack() {
 
 function MyTabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator 
+    screenOptions={({route})=> ({
+      tabBarIcon: ({focused, color, size}) => {
+        let iconName;
+        if (route.name === 'Home') {
+          iconName = focused ? 'home' : 'home-outline';
+    } else if (route.name === 'Profile') {
+      iconName = focused ? 'home' : 'home-outline'; 
+      } else if (route.name === 'Notification') {
+      iconName = focused ? 'home' : 'home-outline'; 
+      } else if (route.name === 'Group') {
+      iconName = focused ? 'home' : 'home-outline'; 
+      } else if (route.name === 'Friend') {
+      iconName = focused ? 'home' : 'home-outline'; 
+      } 
+      return <Ionic name={iconName} size={size} color={color} />;
+      },
+    })}
+    >
       <Tab.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
       <Tab.Screen name="Profile" component={HUserProfile} />
       <Tab.Screen name="Notification" component={HNotificationProfile} />
