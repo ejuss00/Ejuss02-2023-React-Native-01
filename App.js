@@ -16,13 +16,14 @@ import HFriendProfile from './screens/HFriendProfile';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+// const [showAppOptions, setShowAppOptions] = useState(false);
 
 
 function HomeStack() {
   return (
       <Stack.Navigator>
-        <Stack.Screen name="FirstScreen" component={FirstScreen} options={{ headerShown: false }}  />
         <Stack.Screen name="HomePage" component={HomePage} options={{ headerShown: false }}  />
+        <Stack.Screen name="FirstScreen" component={FirstScreen} options={{ headerShown: false }}  />
       </Stack.Navigator>
   );
 }
@@ -35,15 +36,15 @@ function MyTabs() {
         let iconName;
         if (route.name === 'Home') {
           iconName = focused ? 'home' : 'home-outline';
-    } else if (route.name === 'Profile') {
-      iconName = focused ? 'home' : 'home-outline'; 
-      } else if (route.name === 'Notification') {
-      iconName = focused ? 'home' : 'home-outline'; 
-      } else if (route.name === 'Group') {
-      iconName = focused ? 'home' : 'home-outline'; 
-      } else if (route.name === 'Friend') {
-      iconName = focused ? 'home' : 'home-outline'; 
-      } 
+          } else if (route.name === 'Profile') {
+            iconName = focused ? 'happy' : 'happy-outline';
+          } else if (route.name === 'Notification') {
+            iconName = focused ? 'chatbox-ellipses' : 'chatbox-ellipses-outline';
+          } else if (route.name === 'Group') {
+            iconName = focused ? 'radio' : 'radio-outline';
+          } else if (route.name === 'Friend') {
+            iconName = focused ? 'people' : 'people-outline';
+          } 
       return <Ionic name={iconName} size={size} color={color} />;
       },
     })}
