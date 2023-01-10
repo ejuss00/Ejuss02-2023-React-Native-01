@@ -2073,6 +2073,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-community/checkbox@npm:^0.5.14":
+  version: 0.5.14
+  resolution: "@react-native-community/checkbox@npm:0.5.14"
+  peerDependencies:
+    react: "*"
+    react-native: ">= 0.62"
+    react-native-windows: ">=0.62"
+  peerDependenciesMeta:
+    react-native-windows:
+      optional: true
+  checksum: 09380fe4ef955f610997d50ea516076f6f27d2ebafd9946bf4fc2794d9c3943bd8c1378a09554efdf8f94a82a9fa0ea102f8b72c6561688cac55f156fc667443
+  languageName: node
+  linkType: hard
+
 "@react-native-community/cli-clean@npm:^9.2.1":
   version: 9.2.1
   resolution: "@react-native-community/cli-clean@npm:9.2.1"
@@ -8936,6 +8950,7 @@ __metadata:
   dependencies:
     "@babel/core": ^7.12.9
     "@babel/preset-env": ^7.20.2
+    "@react-native-community/checkbox": ^0.5.14
     "@react-navigation/bottom-tabs": ^6.5.2
     "@react-navigation/native": ^6.1.1
     "@react-navigation/stack": ^6.3.10

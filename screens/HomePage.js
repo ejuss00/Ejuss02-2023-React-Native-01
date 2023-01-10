@@ -48,12 +48,12 @@ const HomePage = () => {
         {/*Why I do this? Just in case :D */}
       </Text>
       <TouchableOpacity onPress={() => changeModalVisibility(true)} style={styles.TouchableOpacity}>
-        <Text style={styles.text}> Modal Click to Create New Bill</Text>
+        <Text style={[styles.text, {textAlign: 'center', paddingTop: 50}]}> Modal Click to Create New Bill</Text>
       </TouchableOpacity>
 
       <Modal
         transparent={true}
-        animationType="slide"
+        animationType="fade"
         visible={isModalVisible}
         nRequestClose={() => changeModalVisibility(false)}>
 
