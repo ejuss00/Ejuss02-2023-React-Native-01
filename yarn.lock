@@ -4437,6 +4437,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-checkbox@npm:^2.2.2":
+  version: 2.2.2
+  resolution: "expo-checkbox@npm:2.2.2"
+  checksum: 9aa3aedbdb5bbc0c64b9fbe8a9397229a95a60bb91f6c9759a6b4373b06a7a7201755c73ba9b56ec3a36c681e661146d10def6b43d6dcb6ec08c3cb7597552a6
+  languageName: node
+  linkType: hard
+
 "expo-constants@npm:~14.0.0, expo-constants@npm:~14.0.2":
   version: 14.0.2
   resolution: "expo-constants@npm:14.0.2"
@@ -8955,6 +8962,7 @@ __metadata:
     "@react-navigation/native": ^6.1.1
     "@react-navigation/stack": ^6.3.10
     expo: ~47.0.12
+    expo-checkbox: ^2.2.2
     expo-status-bar: ~1.4.2
     nativewind: ^2.0.11
     postcss: 8.4.21
