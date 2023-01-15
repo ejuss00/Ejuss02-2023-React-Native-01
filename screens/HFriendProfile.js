@@ -1,92 +1,159 @@
-import React , {useState}from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Modal } from 'react-native';
-
-import { Button } from 'react-native-elements';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Modal, FlatList, TextInput } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import MSelectFriends from '../components/MSelectFriends';
+
+import MSelectFriendModal from '../components/MSelectFriendModal';
 
 
-export default function HFriendProfile() {
+function HFriendProfile() {
+
+    const [isModalVisible, setisModalVisible] = useState(false);
+    const [chooseData, setchooseData] = useState();
     const [friendList, setFriendList] = useState([]);
-    const [uniqueNumber, setUniqueNumber] = useState(1);
-    const [modalVisible, setModalVisible] = useState(false);
-  
+    const [uniqueId, setUniqueId] = useState(1);
+
     const addFriend = () => {
-      setFriendList([...friendList, { name: 'Friend ' + uniqueNumber }]);
-      setUniqueNumber(uniqueNumber + 1);
+        setFriendList([...friendList, { key: uniqueId, name: 'Friend ' + uniqueId }]);
+        setUniqueId(uniqueId + 1);
     }
-  
+
+
+    const changeModalVisibility = (bool) => {
+        setisModalVisible(bool);
+    }
+
+    const setData = (data) => {
+        setchooseData(data);
+    }
+
     return (
-      <View>
-        <View style={styles.headerContainer}>
-          <Text style={styles.title}>Friend/User List</Text>
-          <Button
-            title="Add Friend"
-            onPress={() => {
-              addFriend();
-            }}
-          />
-        </View>
-  
-        <FlatList
-          data={friendList}
-          keyExtractor={(item) => item.name}
-          renderItem={({ item }) => (
-            <TouchableOpacity style={styles.friendContainer}>
-              <Text style={styles.friendName}>{item.name}</Text>
-            </TouchableOpacity>
-          )}
-        />
-        <View style={styles.buttonCreateBill}>
-        <TouchableOpacity
-                style={{ position: 'absolute', bottom: 20, right: 20 }}
-                onPress={() => setModalVisible(true)}
-            >
-            <Ionicons name="md-wallet" size={32} color="green" style={{ width: 40, height: 40 }}/>
-            </TouchableOpacity>
+        <SafeAreaView style={styles.containerRoot}>
+            <View style={styles.containerMain}>
+                <View style={styles.container1}>
+                    <Text style={{ flex: 1 }}></Text>
+                    <Text style={{
+                        flex: 10,
+                        color: `#000000`,
+                        fontSize: 20,
+                        textAlign: 'center',
+                        paddingTop: '2%',
+                    }}
+                    >Friends</Text>
+                    <Ionicons name='ios-add' size={30} color='#6495ED'
+                        onPress={() => addFriend()}
+                        style={{
+                            flex: 1,
+                            textAlign: 'center',
+                            textAlignVertical: 'center',
+                        }} />
+                </View>
+                <View style={styles.container2}>
+                    <TextInput style={styles.textInput} placeholder="Search Friend" />
+                    <Text style={[styles.friendTitle, { display: 'none' }]}
+                    >Hello, Friend Page!</Text>
+
+                    {/* Flatlist of friendlist */}
+                    <FlatList
+                        data={friendList}
+                        keyExtractor={(item) => item.key.toString()}
+                        renderItem={({ item }) => (
+                            <TouchableOpacity style={styles.friendContainer}>
+                                <Text style={styles.friendName}>{item.name}</Text>
+                            </TouchableOpacity>
+                        )}
+                    />
+
+                </View>
+                <Text style={[styles.text, { display: 'none' }]}>
+                    {chooseData} {/* This grab the data from OK or Cancel 'closeModal: (bool: any, data: any)' from SelectFriendModal */}
+                    {/*Why I do this? Just in case :D */}
+                </Text>
+                <TouchableOpacity onPress={() => changeModalVisibility(true)} style={styles.buttonLowerContainer}>
+                    <Ionicons style={styles.createButton} name="ios-wallet-outline" size={32} color="white" />
+                </TouchableOpacity>
+            </View>
+
+
 
             <Modal
-                animationType="slide"
-                transparent={false}
-                visible={modalVisible}
+                transparent={true}
+                animationType='slide'
+                visible={isModalVisible}
+                onRequestClose={() => changeModalVisibility(false)}
             >
-                <MSelectFriends
-                closeModal={() => setModalVisible(false)}
-                />
+                <MSelectFriendModal
+                    changeModalVisibility={changeModalVisibility}
+                    setData={setData} />
             </Modal>
-        </View>
+        </ SafeAreaView >
 
-        
-      </View>
-      
     );
-  }
-  const styles = StyleSheet.create({
-    headerContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: 20,
+}
+
+const styles = StyleSheet.create({
+    containerRoot: {
+        flex: 1,
+        backgroundColor: `#f0f8ff`,
     },
-    title: {
-      fontWeight: 'bold',
-      fontSize: 22,
+    containerMain: {
+        flex: 1,
+        paddingHorizontal: 10,
+
+    },
+    container1: {
+        width: '100%',
+        height: '7%',
+        borderColor: `gray`,
+        borderBottomWidth: 0.7,
+        marginTop: 10,
+        flexDirection: 'row',
+    },
+    container2: {
+        flex: 1,
+        backgroundColor: 'white',
+        padding: 10,
+    },
+    textInput: {
+        height: 40,
+        borderColor: `gray`,
+        borderWidth: 1,
+        borderRadius: 5,
+        paddingLeft: 10,
+        marginBottom: 10,
+        backgroundColor: `#f0f8ff`,
+    },
+    friendTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: `gray`,
+
     },
     friendContainer: {
-      padding: 10,
-      alignItems: 'center',
-      width: '33%',
-      backgroundColor: '#4285F4',
+        borderBottomWidth: 1,
+        borderBottomColor: '#778899',
+        margin: 7,
+        padding: 10,
     },
     friendName: {
-      fontWeight: 'bold',
-      fontSize: 18,
+
     },
-    buttonCreateBill: {
-        position: 'relative',
-        backgroundColor: 'Azure',
+    buttonLowerContainer: {
+        position: 'absolute',
+        bottom: 0,
+        flexDirection: 'row',
+        width: 50,
+        height: 50,
+        zindex: 5,
+        alignSelf: 'center',
+        backgroundColor: `#32cd32`,
+        borderRadius: 50,
+    },
+    createButton: {
+        textAlign: 'center',
+        textAlignVertical: 'center',
     }
-  });
+});
 
-
+export default HFriendProfile;

@@ -21,21 +21,21 @@ const Tab = createBottomTabNavigator();
 
 function HomeStack() {
   return (
-      <Stack.Navigator>
-        <Stack.Screen name="HomePage" component={HomePage} options={{ headerShown: false }}  />
-        <Stack.Screen name="FirstScreen" component={FirstScreen} options={{ headerShown: false }}  />
-      </Stack.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen name="HomePage" component={HomePage} options={{ headerShown: false }} />
+      <Stack.Screen name="FirstScreen" component={FirstScreen} options={{ headerShown: false }} />
+    </Stack.Navigator>
   );
 }
 
 function MyTabs() {
   return (
-    <Tab.Navigator 
-    screenOptions={({route})=> ({
-      tabBarIcon: ({focused, color, size}) => {
-        let iconName;
-        if (route.name === 'Home') {
-          iconName = focused ? 'home' : 'home-outline';
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === 'Home') {
+            iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Profile') {
             iconName = focused ? 'happy' : 'happy-outline';
           } else if (route.name === 'Notification') {
@@ -44,16 +44,16 @@ function MyTabs() {
             iconName = focused ? 'radio' : 'radio-outline';
           } else if (route.name === 'Friend') {
             iconName = focused ? 'people' : 'people-outline';
-          } 
-      return <Ionic name={iconName} size={size} color={color} />;
-      },
-    })}
+          }
+          return <Ionic name={iconName} size={size} color={color} />;
+        },
+      })}
     >
       <Tab.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
       <Tab.Screen name="Profile" component={HUserProfile} />
       <Tab.Screen name="Notification" component={HNotificationProfile} />
       <Tab.Screen name="Group" component={HGroupProfile} />
-      <Tab.Screen name="Friend" component={HFriendProfile} />
+      <Tab.Screen name="Friend" component={HFriendProfile} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }
