@@ -14,6 +14,8 @@ import HNotificationProfile from "./screens/HNotificationProfile";
 import HGroupProfile from "./screens/HGroupProfile";
 import HFriendProfile from './screens/HFriendProfile';
 
+import SelectFriendCheck from './components/SelectFriendCheck';
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 // const [showAppOptions, setShowAppOptions] = useState(false);
@@ -24,6 +26,15 @@ function HomeStack() {
     <Stack.Navigator>
       <Stack.Screen name="HomePage" component={HomePage} options={{ headerShown: false }} />
       <Stack.Screen name="FirstScreen" component={FirstScreen} options={{ headerShown: false }} />
+    </Stack.Navigator>
+  );
+}
+
+function FriendBillList () {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="FriendBillList" component={HFriendProfile} options={{ headerShown: false }} />
+      <Stack.Screen name="SelectFriendCheck" component={SelectFriendCheck}/>
     </Stack.Navigator>
   );
 }
@@ -53,7 +64,7 @@ function MyTabs() {
       <Tab.Screen name="Profile" component={HUserProfile} />
       <Tab.Screen name="Notification" component={HNotificationProfile} />
       <Tab.Screen name="Group" component={HGroupProfile} />
-      <Tab.Screen name="Friend" component={HFriendProfile} options={{ headerShown: false }} />
+      <Tab.Screen name="Friend" component={FriendBillList} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }

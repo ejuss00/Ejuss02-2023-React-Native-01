@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Modal, FlatList, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList, TextInput } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
-import MSelectFriendModal from '../components/MSelectFriendModal';
+function HFriendProfile({navigation: {navigate}}) {
 
-
-function HFriendProfile() {
-
-    const [isModalVisible, setisModalVisible] = useState(false);
-    const [chooseData, setchooseData] = useState();
     const [friendList, setFriendList] = useState([]);
     const [uniqueId, setUniqueId] = useState(1);
 
@@ -18,15 +13,7 @@ function HFriendProfile() {
         setFriendList([...friendList, { key: uniqueId, name: 'Friend ' + uniqueId }]);
         setUniqueId(uniqueId + 1);
     }
-
-
-    const changeModalVisibility = (bool) => {
-        setisModalVisible(bool);
-    }
-
-    const setData = (data) => {
-        setchooseData(data);
-    }
+    
 
     return (
         <SafeAreaView style={styles.containerRoot}>
@@ -60,34 +47,19 @@ function HFriendProfile() {
                         keyExtractor={(item) => item.key.toString()}
                         renderItem={({ item }) => (
                             <TouchableOpacity style={styles.friendContainer}>
-                                <Text style={styles.friendName}>{item.name}</Text>
+                                <Text style={styles.friendName}>
+                                {item.name}</Text>
                             </TouchableOpacity>
                         )}
                     />
-
                 </View>
-                <Text style={[styles.text, { display: 'none' }]}>
-                    {chooseData} {/* This grab the data from OK or Cancel 'closeModal: (bool: any, data: any)' from SelectFriendModal */}
-                    {/*Why I do this? Just in case :D */}
+                <Text style={[styles.textInput, {display: "none"}]}> 
                 </Text>
-                <TouchableOpacity onPress={() => changeModalVisibility(true)} style={styles.buttonLowerContainer}>
+                <TouchableOpacity onPress={() => navigate('SelectFriendCheck')} style={styles.buttonLowerContainer}>
                     <Ionicons style={styles.createButton} name="ios-wallet-outline" size={32} color="white" />
                 </TouchableOpacity>
             </View>
-
-
-
-            <Modal
-                transparent={true}
-                animationType='slide'
-                visible={isModalVisible}
-                onRequestClose={() => changeModalVisibility(false)}
-            >
-                <MSelectFriendModal
-                    changeModalVisibility={changeModalVisibility}
-                    setData={setData} />
-            </Modal>
-        </ SafeAreaView >
+        </SafeAreaView>
 
     );
 }
