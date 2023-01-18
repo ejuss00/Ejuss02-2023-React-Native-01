@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList, TextInput } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Button } from 'react-native-elements';
 
 
-function HFriendProfile({navigation: {navigate}}) {
+function HFriendProfile({ navigation, navigation: {navigate} }) {
+
 
     const [friendList, setFriendList] = useState([]);
     const [uniqueId, setUniqueId] = useState(1);
 
-    const addFriend = () => {
+    const handleAddFriend  = () => {
         setFriendList([...friendList, { key: uniqueId, name: 'Friend ' + uniqueId }]);
         setUniqueId(uniqueId + 1);
     }
-    
 
     return (
         <SafeAreaView style={styles.containerRoot}>
@@ -29,7 +30,7 @@ function HFriendProfile({navigation: {navigate}}) {
                     }}
                     >Friends</Text>
                     <Ionicons name='ios-add' size={30} color='#6495ED'
-                        onPress={() => addFriend()}
+                        onPress={() => handleAddFriend ()}
                         style={{
                             flex: 1,
                             textAlign: 'center',
@@ -40,6 +41,13 @@ function HFriendProfile({navigation: {navigate}}) {
                     <TextInput style={styles.textInput} placeholder="Search Friend" />
                     <Text style={[styles.friendTitle, { display: 'none' }]}
                     >Hello, Friend Page!</Text>
+
+                    <Button title="Go to SelectFriendCheck" onPress={() => navigation.navigate('SelectFriendCheck', {
+                        friendList: 86,
+                        otherParam: 'anything you want here',
+                        // friendList: friendList
+                    })} />
+
 
                     {/* Flatlist of friendlist */}
                     <FlatList
@@ -55,9 +63,9 @@ function HFriendProfile({navigation: {navigate}}) {
                 </View>
                 <Text style={[styles.textInput, {display: "none"}]}> 
                 </Text>
-                <TouchableOpacity onPress={() => navigate('SelectFriendCheck')} style={styles.buttonLowerContainer}>
+                {/* <TouchableOpacity onPress={() => navigate('SelectFriendCheck')} style={styles.buttonLowerContainer}>
                     <Ionicons style={styles.createButton} name="ios-wallet-outline" size={32} color="white" />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         </SafeAreaView>
 

@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Ionic from 'react-native-vector-icons/Ionicons';
 // import Tabs from './navigation/tabs';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { StatusBar } from 'expo-status-bar';
 
 
 import FirstScreen from './screens/FirstScreen';
@@ -15,6 +16,11 @@ import HGroupProfile from "./screens/HGroupProfile";
 import HFriendProfile from './screens/HFriendProfile';
 
 import SelectFriendCheck from './components/SelectFriendCheck';
+
+//screens/screens2
+import AllExpenses from './screens/screens2/AllExpenses';
+import RecentExpenses from './screens/screens2/RecentExpenses';
+import ManageExpense from './screens/screens2/ManageExpense';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -35,6 +41,17 @@ function FriendBillList () {
     <Stack.Navigator>
       <Stack.Screen name="FriendBillList" component={HFriendProfile} options={{ headerShown: false }} />
       <Stack.Screen name="SelectFriendCheck" component={SelectFriendCheck}/>
+    </Stack.Navigator>
+  );
+}
+
+function ExpenseList ( ) {
+  return (
+    <Stack.Navigator>
+      {/* <Stack.Screen name="HNotificationProfile" component={HNotificationProfile} options={{ headerShown: false }} /> */}
+      <Stack.Screen name="AllExpenses" component={AllExpenses} options={{ headerShown: false }}/>
+      <Stack.Screen name="ManageExpense" component={ManageExpense} options={{ headerShown: false }}/>
+      <Stack.Screen name="RecentExpenses" component={RecentExpenses} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 }
@@ -62,7 +79,7 @@ function MyTabs() {
     >
       <Tab.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
       <Tab.Screen name="Profile" component={HUserProfile} />
-      <Tab.Screen name="Notification" component={HNotificationProfile} />
+      <Tab.Screen name="Notification" component={ExpenseList} options={{ headerShown: false }}/>
       <Tab.Screen name="Group" component={HGroupProfile} />
       <Tab.Screen name="Friend" component={FriendBillList} options={{ headerShown: false }} />
     </Tab.Navigator>
@@ -78,16 +95,3 @@ function App() {
 }
 
 export default App;
-
-// function App() {
-//   return (
-//     <NavigationContainer>
-//       <Stack.Navigator>
-//         <Stack.Screen name="FirstScreen" component={FirstScreen} options={{ headerShown: false }} />
-//         <Stack.Screen name="HomePage" component={HomePage} options={{ headerShown: false }} />
-//       </Stack.Navigator>
-//     </NavigationContainer>
-//   );
-// }
-
-// export default App;
