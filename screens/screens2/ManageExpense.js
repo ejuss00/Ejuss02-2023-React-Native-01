@@ -8,24 +8,47 @@ import { useState } from 'react';
 function ManageExpense({ route, navigation }) {
   const { friendData } = route.params;
 
+  //remove empty element
+
+
   //calculate total bill
   const [billAmount, setBillAmount] = useState('');
   const [dividedAmount, setDividedAmount] = useState(0);
-
 
   return (
     <SafeAreaView >
       <View>
         <Text>Manage Bill Upon Others!</Text>
         <Text>=== Split Equally Mode ===</Text>
-
-        <TextInput placeholder="Enter total bill"
+        {/* <TextInput placeholder="Enter total bill"
           style={{ color: 'black', backgroundColor: 'white', width: 200, height: 40, borderColor: 'gray', borderWidth: 1 }}
         />
+        <Button title="Calculate" color="secondary" /> */}
+        <View>
+          <TextInput
+            value={billAmount}
+            onChangeText={(text) => setBillAmount(text)}
+            placeholder="Enter the bill amount"
+            keyboardType='numeric'
+            style={{ color: 'black', backgroundColor: 'white', width: 200, height: 40, borderColor: 'gray', borderWidth: 1 }}
+          />
+          <Text>Divided Amount : RM {dividedAmount}</Text>
+          <Button
+            title="Divide bill"
+            onPress={() => {
+              if (friendData.length > 0) {
+                let divided = billAmount / friendData.length;
+                setDividedAmount(divided);
+                friendData.forEach((friend) => {
+                  friend.debt += divided;
+                });
+              } else {
+                alert("No friend in the list")
+              }
+            }}
+          />
 
-        <Button title="Calculate" color="secondary" />
-
-
+        </View>
         <FlatList
           data={friendData}
           keyExtractor={item => item.id}
@@ -40,9 +63,6 @@ function ManageExpense({ route, navigation }) {
             </TouchableOpacity>
           )}
         />
-
-
-
         <View>
           <Button title="Back" onPress={() => navigation.goBack()} type="clear" />
         </View>
