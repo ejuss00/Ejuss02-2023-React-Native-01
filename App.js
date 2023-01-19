@@ -21,6 +21,7 @@ import SelectFriendCheck from './components/SelectFriendCheck';
 import AllExpenses from './screens/screens2/AllExpenses';
 import RecentExpenses from './screens/screens2/RecentExpenses';
 import ManageExpense from './screens/screens2/ManageExpense';
+import FriendProfile from './screens/screens2/FriendProfile';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -50,6 +51,7 @@ function ExpenseList ( ) {
     <Stack.Navigator>
       {/* <Stack.Screen name="HNotificationProfile" component={HNotificationProfile} options={{ headerShown: false }} /> */}
       <Stack.Screen name="AllExpenses" component={AllExpenses} options={{ headerShown: false }}/>
+      <Stack.Screen name="FriendProfile" component={FriendProfile} options={{ headerShown: false }}/>
       <Stack.Screen name="ManageExpense" component={ManageExpense} options={{ headerShown: false }}/>
       <Stack.Screen name="RecentExpenses" component={RecentExpenses} options={{ headerShown: false }}/>
     </Stack.Navigator>
