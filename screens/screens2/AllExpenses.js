@@ -1,4 +1,4 @@
-import { Text, View, FlatList, TouchableOpacity, TextInput } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
@@ -22,6 +22,10 @@ function AllExpenses({ navigation }) {
     });
 
     // const friendList = [setFriendData]
+
+    const filteredData = friendData.filter(friend => friend.name !== '');
+    // navigation.navigate('ManageExpense', { friendData: filteredData });
+
 
     return (
         <SafeAreaView>
@@ -71,10 +75,11 @@ function AllExpenses({ navigation }) {
 
             {/* List Friend Mula kat sini */}
             <View>
-                <Text>== List of Friends ==</Text>
+                <Text>=== List of Friends ===</Text>
                 <FlatList
-                    data={friendData}
+                    data={filteredData}
                     keyExtractor={item => item.id}
+                    style={styles.flatlistFriendsList}
                     renderItem={({ item }) => (
                         <TouchableOpacity onPress={() => navigation.navigate('FriendProfile', {
                             name: item.name,
@@ -91,7 +96,7 @@ function AllExpenses({ navigation }) {
 
                     onPress={() => {
                         navigation.navigate('ManageExpense', {
-                            friendData: friendData,
+                            filteredData: filteredData,
                         })
                     }}
                 />
@@ -101,4 +106,17 @@ function AllExpenses({ navigation }) {
 
     );
 }
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    flatlistFriendsList: {
+        borederColor: 'black',
+        borderWidth: 1,
+        marginHorizontal: 20,
+    },
+});
+
 export default AllExpenses;

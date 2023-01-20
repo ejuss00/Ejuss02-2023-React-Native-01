@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 
 function ManageExpense({ route, navigation }) {
-  const { friendData } = route.params;
+  const { filteredData } = route.params;
 
   //remove empty element
 
@@ -36,10 +36,10 @@ function ManageExpense({ route, navigation }) {
           <Button
             title="Divide bill"
             onPress={() => {
-              if (friendData.length > 0) {
-                let divided = billAmount / friendData.length;
+              if (filteredData.length > 0) {
+                let divided = billAmount / filteredData.length;
                 setDividedAmount(divided);
-                friendData.forEach((friend) => {
+                filteredData.forEach((friend) => {
                   friend.debt += divided;
                 });
               } else {
@@ -50,7 +50,7 @@ function ManageExpense({ route, navigation }) {
 
         </View>
         <FlatList
-          data={friendData}
+          data={filteredData}
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => navigation.navigate('FriendProfile', {
