@@ -12,14 +12,14 @@ function SelectFriendBill() {
                 <Ionicons name="md-checkmark-circle" size={32} color="green" />
             </View>
         </SafeAreaView>
-
+        
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+      flex: 1,
     },
-});
+  });
 
 export default SelectFriendBill;

@@ -3,9 +3,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Ionic from 'react-native-vector-icons/Ionicons';
-// import Tabs from './navigation/tabs';
+import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StatusBar } from 'expo-status-bar';
 
 
 import FirstScreen from './screens/FirstScreen';
@@ -27,7 +26,6 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 // const [showAppOptions, setShowAppOptions] = useState(false);
 
-
 function HomeStack() {
   return (
     <Stack.Navigator>
@@ -37,23 +35,23 @@ function HomeStack() {
   );
 }
 
-function FriendBillList () {
+function NotificationStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="FriendBillList" component={HFriendProfile} options={{ headerShown: false }} />
-      <Stack.Screen name="SelectFriendCheck" component={SelectFriendCheck}/>
+      <Stack.Screen name="SelectFriendCheck" component={SelectFriendCheck} />
     </Stack.Navigator>
   );
 }
 
-function ExpenseList ( ) {
+function ExpenseList() {
   return (
     <Stack.Navigator>
       {/* <Stack.Screen name="HNotificationProfile" component={HNotificationProfile} options={{ headerShown: false }} /> */}
-      <Stack.Screen name="AllExpenses" component={AllExpenses} options={{ headerShown: false }}/>
-      <Stack.Screen name="FriendProfile" component={FriendProfile} options={{ headerShown: false }}/>
-      <Stack.Screen name="ManageExpense" component={ManageExpense} options={{ headerShown: false }}/>
-      <Stack.Screen name="RecentExpenses" component={RecentExpenses} options={{ headerShown: false }}/>
+      <Stack.Screen name="AllExpenses" component={AllExpenses} options={{ headerShown: false }} />
+      <Stack.Screen name="FriendProfile" component={FriendProfile} options={{ headerShown: false }} />
+      <Stack.Screen name="ManageExpense" component={ManageExpense} options={{ headerShown: false }} />
+      <Stack.Screen name="RecentExpenses" component={RecentExpenses} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }
@@ -81,10 +79,11 @@ function MyTabs() {
     >
       <Tab.Screen name="Home" component={HomeStack} options={{ headerShown: false }} />
       <Tab.Screen name="Profile" component={HUserProfile} />
-      <Tab.Screen name="Notification" component={ExpenseList} options={{ headerShown: false }}/>
+      <Tab.Screen name="Notification" component={NotificationStack} options={{ headerShown: false }} />
       <Tab.Screen name="Group" component={HGroupProfile} />
-      <Tab.Screen name="Friend" component={FriendBillList} options={{ headerShown: false }} />
+      <Tab.Screen name="Friend" component={ExpenseList} options={{ headerShown: false }} />
     </Tab.Navigator>
+    // FriendBillList
   );
 }
 
@@ -95,5 +94,14 @@ function App() {
     </NavigationContainer>
   );
 }
+
+// const styles = StyleSheet.create({
+//   headerTitle: {
+//     alignSelf: 'center',
+//     fontWeight: 'bold',
+//     fontSize: 20,
+//     color: '#fff',
+//   },
+// });
 
 export default App;

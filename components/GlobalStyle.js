@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const GlobalStyle = StyleSheet.create({
+
     titleMain: {
 
     },
@@ -8,6 +9,6 @@ export const GlobalStyle = StyleSheet.create({
 
     },
     Text1: {
-        
+
     }
 });

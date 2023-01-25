@@ -5,13 +5,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from 'react-native-elements';
 
 
-function HFriendProfile({ navigation, navigation: {navigate} }) {
+function HFriendProfile({ navigation, navigation: { navigate } }) {
 
 
     const [friendList, setFriendList] = useState([]);
     const [uniqueId, setUniqueId] = useState(1);
 
-    const handleAddFriend  = () => {
+    const handleAddFriend = () => {
         setFriendList([...friendList, { key: uniqueId, name: 'Friend ' + uniqueId }]);
         setUniqueId(uniqueId + 1);
     }
@@ -28,9 +28,9 @@ function HFriendProfile({ navigation, navigation: {navigate} }) {
                         textAlign: 'center',
                         paddingTop: '2%',
                     }}
-                    >Friends</Text>
+                    >THIS IS NOW NOTIFICATION</Text>
                     <Ionicons name='ios-add' size={30} color='#6495ED'
-                        onPress={() => handleAddFriend ()}
+                        onPress={() => handleAddFriend()}
                         style={{
                             flex: 1,
                             textAlign: 'center',
@@ -56,12 +56,12 @@ function HFriendProfile({ navigation, navigation: {navigate} }) {
                         renderItem={({ item }) => (
                             <TouchableOpacity style={styles.friendContainer}>
                                 <Text style={styles.friendName}>
-                                {item.name}</Text>
+                                    {item.name}</Text>
                             </TouchableOpacity>
                         )}
                     />
                 </View>
-                <Text style={[styles.textInput, {display: "none"}]}> 
+                <Text style={[styles.textInput, { display: "none" }]}>
                 </Text>
                 {/* <TouchableOpacity onPress={() => navigate('SelectFriendCheck')} style={styles.buttonLowerContainer}>
                     <Ionicons style={styles.createButton} name="ios-wallet-outline" size={32} color="white" />
