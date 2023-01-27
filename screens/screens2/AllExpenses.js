@@ -24,6 +24,7 @@ function AllExpenses({ navigation }) {
     //remove empty element
     const filteredData = friendData.filter(friend => friend.name !== '');
 
+
     const checkInput = () => {
         if (newFriend.name === '' || newFriend.age === '' || newFriend.email === '') {
             Alert.alert(
@@ -50,8 +51,6 @@ function AllExpenses({ navigation }) {
             })
         }
     };
-
-
 
     return (
         <SafeAreaView style={styles.container1} >

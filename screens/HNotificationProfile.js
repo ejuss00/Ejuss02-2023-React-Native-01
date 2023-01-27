@@ -6,7 +6,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 function HNotificationProfile() {
     return (
         <View>
-            <Text>Hello, Home Page!</Text>
+            <Text>Hello, Notification Page!</Text>
             <Ionicons name="md-checkmark-circle" size={32} color="green" />
         </View>
     );
