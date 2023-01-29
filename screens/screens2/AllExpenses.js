@@ -72,6 +72,7 @@ function AllExpenses({ navigation }) {
                     onChangeText={(insert) => setNewFriend({ ...newFriend, age: parseFloat(insert) })}
                     placeholder="Enter friend's age"
                     style={styles.textInputFriend}
+                    keyboardType='numeric'
                 />
                 <TextInput
                     value={newFriend.email}
@@ -84,6 +85,7 @@ function AllExpenses({ navigation }) {
                     onChangeText={(insert) => setNewFriend({ ...newFriend, debt: parseFloat(insert) })}
                     placeholder="Enter friend's debt"
                     style={styles.textInputFriend}
+                    keyboardType='numeric'
                 />
 
                 <Button

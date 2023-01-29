@@ -3,15 +3,14 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Ionic from 'react-native-vector-icons/Ionicons';
-import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+//import
 import HomePage from "./screens/HomePage";
 import HUserProfile from "./screens/HUserProfile";
 import HNotificationProfile from "./screens/HNotificationProfile";
 import HGroupProfile from "./screens/HGroupProfile";
-
-//screens/screens2
+//import screens/screens2
 import AllExpenses from './screens/screens2/AllExpenses';
 import RecentExpenses from './screens/screens2/RecentExpenses';
 import ManageExpense from './screens/screens2/ManageExpense';
@@ -53,9 +52,9 @@ function MyTabs() {
       })}
     >
       <Tab.Screen name="Home" component={HomePage} options={{ headerShown: false }} />
-      <Tab.Screen name="Profile" component={HUserProfile} />
+      <Tab.Screen name="Profile" component={HUserProfile} options={{ headerShown: false }} />
       <Tab.Screen name="Notification" component={HNotificationProfile} options={{ headerShown: false }} />
-      <Tab.Screen name="Group" component={HGroupProfile} />
+      <Tab.Screen name="Group" component={HGroupProfile} options={{ headerShown: false }} />
       <Tab.Screen name="Friend" component={ExpenseList} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
