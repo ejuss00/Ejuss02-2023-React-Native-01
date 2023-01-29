@@ -66,17 +66,18 @@ function ManageExpense({ route, navigation }) { // [][][][][][]  the MANAGE EXPE
     });
 
     return (
-      <View style={styles.ExactAmountSplitCont}>
-        <View style={{ padding: 20 }}>
-          <Text style={{ fontWeight: 'bold' }}>
+      <View style={styles.exactAmountSplitCont}>
+        <View style={styles.exactCon2}>
+          <Text style={styles.exactTextTotal}>
             Total amount: {totalAmount.toFixed(2)}
           </Text>
         </View>
-        <ScrollView>
+        <ScrollView contentContainerStyle={styles.scrollContentContainer}>
           {filteredData.map((friend, index) => (
-            <View key={index} style={{ padding: 20 }}>
+            <View key={index} style={styles.exactScrollList}>
               <Text style={{ fontWeight: 'bold' }}>{friend.name}</Text>
               <TextInput
+                style={styles.ExactTextInput}
                 value={amountExactBill[index]}
                 onChangeText={text => handleAmountChange(index, text)}
                 keyboardType='numeric'
@@ -95,7 +96,7 @@ function ManageExpense({ route, navigation }) { // [][][][][][]  the MANAGE EXPE
             navigation.goBack();
           }}
         >
-          <Text style={{ padding: 20, fontWeight: 'bold' }}>Comfirm Bill Amount</Text>
+          <Text style={styles.ComfirmExactButton}>Comfirm Bill</Text>
         </TouchableOpacity>
       </View>
     );
@@ -138,7 +139,7 @@ function ManageExpense({ route, navigation }) { // [][][][][][]  the MANAGE EXPE
                   email: item.email,
                   debt: item.debt
                 })}>
-                <Text style={styles.bTextDebt}>{item.name} Debt : RM{item.debt}</Text>
+                <Text style={styles.bTextDebt}>{item.name} debt : RM{item.debt}</Text>
               </TouchableOpacity>
             )}
           />
@@ -173,49 +174,93 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   equalText: {
-    width: 200,
+    fontSize: 20,
+    width: 350,
     height: 40,
     textAlign: 'center',
     textAlignVertical: 'center',
     alignSelf: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-    backgroundColor: 'cyan'
+    marginBottom: 15,
+    backgroundColor: '#38B6FF',
+    borderBottomRightRadius: 20,
+    borderTopLeftRadius: 20,
   },
   equalCon2: {
-
+    flex: 1,
   },
   equalTextInput: {
+    fontSize: 20,
     color: 'black',
     backgroundColor: 'white',
-    width: 200,
-    height: 40,
+    width: 300,
+    height: 50,
     borderColor: 'gray',
     borderWidth: 1,
     alignSelf: 'center',
+    marginBottom: 20,
   },
   equalOutputDividedText: {
     alignSelf: 'center',
   },
   equalButton: {
-    backgroundColor: '#7EB2E7',
     borderColor: 'transparent',
     borderWidth: 0,
     borderRadius: 30,
     width: 200,
     alignSelf: 'center',
   },
+  eBackgroundArt: {
+  },
 
   // [][] Exact Amount Section
-  ExactAmountSplitCont: {
+  exactAmountSplitCont: {
     flex: 1,
-    backgroundColor: '#b0c4de'
+    backgroundColor: `#dcdcdc`,
+  },
+  exactCon2: {
+    padding: 20,
+    borderColor: `#4169e1`,
+    borderWidth: 2,
+  },
+  scrollViewCon: {
+    borderBottomColor: 'red',
+    borderBottomWidth: 2,
+  },
+  exactTextTotal: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    textAlign: 'center',
+  },
+  exactScrollList: {
+    paddingHorizontal: 20,
+  },
+  ExactTextInput: {
+    fontSize: 20,
+    backgroundColor: 'white',
+  },
+  scrollContentContainer: {
+    // backgroundColor: 'red',
+    paddingTop: 10,
+  },
+  ComfirmExactButton: {
+    fontSize: 20,
+    fontWeight: '500',
+    textAlign: 'center',
+    color: 'white',
+    width: 200,
+    alignSelf: 'center',
+    backgroundColor: '#38B6FF',
+    borderRadius: 25,
+    borderColor: 'transparent',
+    padding: 10,
+    marginBottom: 5,
   },
 
   // [][] Bottom Section
   bottomContainer: {
     flex: 1,
-    backgroundColor: '#ddd',
+    backgroundColor: `#87cefa`,
+
   },
   bHeader: {
     fontSize: 20,
@@ -225,13 +270,17 @@ const styles = StyleSheet.create({
   },
   bFlatList: {
     // flex: 1,
-    backgroundColor: `#add8e6`,
+    borderWidth: 1,
+    borderColor: 'black',
+    marginHorizontal: 10,
+    backgroundColor: '#fff',
+    borderRadius: 10,
   },
   bTouchOpacity: {
     padding: 10,
-    backgroundColor: '#fff',
     borderBottomWidth: 2,
     borderBottomColor: '#ddd',
+    borderRadius: 10,
   },
   bTextDebt: {
     fontSize: 15,
