@@ -158,9 +158,9 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     header: {
-        fontSize: 25,
-        textAlign: 'center',
-        margin: 10,
+        fontSize: 18,
+        color: 'grey',
+        textAlign: 'auto',
         fontWeight: '400',
     },
     container2: {
